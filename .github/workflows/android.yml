@@ -38,17 +38,17 @@ jobs:
       run: |
         releaseName=`ls out/KeystoreInjection-v*-release.zip | awk -F '(/|.zip)' '{print $2}'` && echo "releaseName=$releaseName" >> $GITHUB_OUTPUT
         debugName=`ls out/KeystoreInjection-v*-debug.zip | awk -F '(/|.zip)' '{print $2}'` && echo "debugName=$debugName" >> $GITHUB_OUTPUT
-        unzip out/KeystoreInjection-v*-release.zip -d module-release
-        unzip out/KeystoreInjection-v*-debug.zip -d module-debug
+        unzip out/KeystoreInjection-v*-release.zip -d module-release1
+        unzip out/KeystoreInjection-v*-debug.zip -d module-debug1
 
     - name: Upload release
       uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.prepareArtifact.outputs.releaseName }}
-        path: "./module-release/*"
+        path: "./module-release1/*"
 
     - name: Upload debug
       uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.prepareArtifact.outputs.debugName }}
-        path: "./module-debug/*"
+        path: "./module-debug1/*"
